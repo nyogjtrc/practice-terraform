@@ -83,4 +83,18 @@ resource "aws_instance" "web" {
   ]
 
   subnet_id = aws_subnet.this.id
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    host        = self.public_ip
+    private_key = file(var.private_key_path)
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y nginx",
+    ]
+  }
 }

@@ -1,0 +1,19 @@
+#cloud-config
+
+# create users
+users:
+  - default
+  - name: terraform
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+
+# install nginx
+package_update: true
+packages:
+  - nginx
+
+# put html file
+write_files:
+  - path: /var/www/html/terraform.html
+    content: |
+      <h1>Provisioning via Terraform</h1>

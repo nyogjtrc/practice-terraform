@@ -1,0 +1,11 @@
+#cloud-config
+
+package_update: true
+packages:
+  - nginx
+
+write_files:
+  - path: /var/www/html/terraform.html
+    content: |
+      <h1>Provisioning via Terraform</h1>
+

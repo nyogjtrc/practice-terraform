@@ -7,3 +7,6 @@
 
 # zip files
 *.zip
+
+# bin directories
+bin

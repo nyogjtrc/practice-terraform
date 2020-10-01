@@ -1,9 +1,16 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "3.5.0"
+      source = "hashicorp/aws"
     }
+  }
+
+  backend "s3" {
+    encrypt        = true
+    bucket         = "terraform-state20200929152923719000000001"
+    key            = "build-instance/terraform.tfstate"
+    region         = "ap-northeast-1"
+    dynamodb_table = "terraform-locks"
   }
 }
 
